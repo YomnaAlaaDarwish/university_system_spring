@@ -21,6 +21,25 @@
 <html>
   <head>
     <title>Student Management System</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+      function deleteStudent() {
+          var studentId = document.getElementById("studentIdInput").value;
+  
+          $.ajax({
+              type: "POST",
+              url: "/deleteStudent",
+              data: { studentId: studentId },
+              success: function(result) {
+                  document.getElementById("result").innerText = result;
+              },
+              error: function(error) {
+                  console.error("Error:", error);
+              }
+          });
+      }
+  </script>
+  
   </head>
   <body>
     <h1>Student Management System</h1>
@@ -48,5 +67,18 @@
 
       <input type="submit" value="Add Student" />
     </form>
+
+    <form onsubmit="event.preventDefault(); deleteStudent();">
+      <label for="studentIdInput">Student ID:</label>
+      <input type="text" id="studentIdInput" name="studentId">
+      <button type="submit">Delete Student</button>
+  </form>
+
+    
+
+<h1>Result: <span id="result"></span></h1>
+    
+
+
   </body>
 </html>

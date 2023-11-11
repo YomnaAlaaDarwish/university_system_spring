@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -108,6 +109,27 @@ public class StudentController {
 
         return new ModelAndView("index");
     }
+
+    @PostMapping("/deleteStudent")
+    @ResponseBody
+public String deleteStudent(@RequestParam("studentId") String studentId) {
+    NodeList studentList = document.getElementsByTagName("Student");
+    for (int i = 0; i < studentList.getLength(); i++) {
+        Element studentElement = (Element) studentList.item(i);
+        String idAttribute = studentElement.getAttribute("ID");
+        
+        if (idAttribute.equals(studentId)) {
+            Node universityNode = studentElement.getParentNode();
+            universityNode.removeChild(studentElement);
+
+            saveXmldocument();
+            return ("Student deleted");
+        }
+    }
+
+    return ("Student not found");
+}
+
 
     
 }
