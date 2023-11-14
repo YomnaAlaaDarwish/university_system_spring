@@ -18,6 +18,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -52,8 +53,12 @@ public class StudentController {
         }
     }
 
-    @GetMapping("/Home")
+    @GetMapping
     public ModelAndView showForm() {
+        return new ModelAndView("Home");
+    }
+    @GetMapping("/Home")
+    public ModelAndView showhome() {
         return new ModelAndView("Home");
     }
 
@@ -92,40 +97,34 @@ public class StudentController {
         }
     }
 
-    @PostMapping("/addStudent")
-    public ModelAndView addStudent(
-            @RequestParam("studentId") String studentId,
-            @RequestParam("firstName") String firstName,
-            @RequestParam("lastName") String lastName,
-            @RequestParam("gender") String gender,
-            @RequestParam("gpa") double gpa,
-            @RequestParam("level") int level,
-            @RequestParam("address") String address) {
+    @PostMapping(value = "/addStudent", consumes = org.springframework.http.MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public void addStudent(@RequestBody Student student) {
         Element studentElement = document.createElement("Student");
-        studentElement.setAttribute("ID", studentId);
+        studentElement.setAttribute("ID", student.getStudentId());
 
         Element firstNameElement = document.createElement("FirstName");
-        firstNameElement.appendChild(document.createTextNode(firstName));
+        firstNameElement.appendChild(document.createTextNode(student.getFirstName()));
         studentElement.appendChild(firstNameElement);
 
         Element lastNameElement = document.createElement("LastName");
-        lastNameElement.appendChild(document.createTextNode(lastName));
+        lastNameElement.appendChild(document.createTextNode(student.getLastName()));
         studentElement.appendChild(lastNameElement);
 
         Element genderElement = document.createElement("Gender");
-        genderElement.appendChild(document.createTextNode(gender));
+        genderElement.appendChild(document.createTextNode(student.getGender()));
         studentElement.appendChild(genderElement);
 
         Element gpaElement = document.createElement("GPA");
-        gpaElement.appendChild(document.createTextNode(Double.toString(gpa)));
+        gpaElement.appendChild(document.createTextNode(Double.toString(student.getGpa())));
         studentElement.appendChild(gpaElement);
 
         Element levelElement = document.createElement("Level");
-        levelElement.appendChild(document.createTextNode(Integer.toString(level)));
+        levelElement.appendChild(document.createTextNode(Integer.toString(student.getLevel())));
         studentElement.appendChild(levelElement);
 
         Element addressElement = document.createElement("Address");
-        addressElement.appendChild(document.createTextNode(address));
+        addressElement.appendChild(document.createTextNode(student.getAddress()));
         studentElement.appendChild(addressElement);
 
         Node universityNode = document.getFirstChild();
@@ -133,7 +132,7 @@ public class StudentController {
 
         saveXmldocument();
 
-        return new ModelAndView("index");
+        //return new ModelAndView("index");
     }
 
     @GetMapping("/getStudentInfo")
