@@ -1,41 +1,31 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <University>
-                
-    
-    
-    
-    
     <Student ID="20020">
-                                
-        
-        
         <FirstName>Yomna</FirstName>
-                                
-        
-        
         <LastName>Alaa</LastName>
-                                
-        
-        
         <Gender>female</Gender>
-                                
-        
-        
-        <GPA>111.0</GPA>
-                                
-        
-        
+        <GPA>95</GPA>
         <Level>55</Level>
-                                
-        
-        
         <Address>gfdsfwras</Address>
-                            
-    
-    
     </Student>
-                
+               
+    <Student ID="4040">
+        <FirstName>Salma</FirstName>
+        <LastName>Alaa</LastName>
+        <Gender>female</Gender>
+        <GPA>95</GPA>
+        <Level>55</Level>
+        <Address>gfdsfwras</Address>
+    </Student>
     
-    
+
+<Student ID="7070">
+        <FirstName>Ali</FirstName>
+        <LastName>Ashraf</LastName>
+        <Gender>male</Gender>
+        <GPA>80.0</GPA>
+        <Level>4</Level>
+        <Address>gzsrhz</Address>
+    </Student>
 
 </University>

@@ -1,48 +1,88 @@
-<!---<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
-
-<!DOCTYPE html>
-<html>
-<form action="regiter" method="post">
-    <body>
-        <label>firstname: </label>
-        <input type="text" name="fname"> <br><br>
-        <label>lastname: </label>
-        <input type="text" name="lname"> <br><br>
-        <label>Gender: </label>
-        <input type="text" name="gender"> <br><br>
-        <label>GPA: </label>
-        <input type="text" name="gpa"> <br><br>
-    </body>
-    <button type="submit"> Submit </button>
-</form>
-</html>
---->
 <!DOCTYPE html>
 <html>
   <head>
     <title>Student Management System</title>
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <script>
-      function deleteStudent() {
-          var studentId = document.getElementById("studentIdInput").value;
-  
-          $.ajax({
-              type: "POST",
-              url: "/deleteStudent",
-              data: { studentId: studentId },
-              success: function(result) {
-                  document.getElementById("result").innerText = result;
-              },
-              error: function(error) {
-                  console.error("Error:", error);
-              }
-          });
-      }
-  </script>
+    <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f4f4f4;
+      padding: 20px;
+      text-align: center;
+    }
+
+    h1 {
+        color: #333;
+    }
+
+    form {
+        background-color: #fff;
+        padding: 40px; /* زيادة الحشو */
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        margin-bottom: 30px;
+        display: inline-block;
+        text-align: left;
+        width: 500px; /* تعيين عرض ثابت للنموذج */
+    }
+
+    label {
+        margin-right: 10px;
+        display: inline-block;
+        width: 120px; /* زيادة عرض النص */
+    }
+
+    input[type="text"], input[type="submit"], button {
+        padding: 15px; /* زيادة حشو العناصر الداخلية */
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        width: 80%; /* جعل العناصر أوسع داخل النموذج */
+    }
+
+    input[type="submit"], button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    input[type="submit"]:hover, button:hover {
+        background-color: #0056b3;
+    }
+
+    #result {
+        color: green;
+    }
+
+  </style>
+
+      <script>
+         var maxStudents = 0;
+        var addedStudents = 0;
+
+        function setMaxStudents() {
+            maxStudents = document.getElementById("New").value;
+        }
+
+        function clickCounter() {
+            if (maxStudents > 0) {
+                addedStudents++;
+                if (addedStudents >= maxStudents) {
+                    document.getElementById("myButton").disabled = true;
+                }
+            }
+        }
+    
+        
+     </script>
   
   </head>
   <body>
     <h1>Student Management System</h1>
+    <label>Enter number of students:</label>
+    <input id="New"  type="number">
+    <button onclick="setMaxStudents()">Click me</button>
     <form method="POST" action="/addStudent">
       <label for="studentId">Student ID:</label>
       <input type="text" id="studentId" name="studentId" required /><br /><br />
@@ -65,19 +105,10 @@
       <label for="address">Address:</label>
       <input type="text" id="address" name="address" required /><br /><br />
 
-      <input type="submit" value="Add Student" />
+      <input id="myButton" type="submit" value="Add Student" onclick="clickCounter()"/>
     </form>
 
-    <form onsubmit="event.preventDefault(); deleteStudent();">
-      <label for="studentIdInput">Student ID:</label>
-      <input type="text" id="studentIdInput" name="studentId">
-      <button type="submit">Delete Student</button>
-  </form>
-
-    
-
-<h1>Result: <span id="result"></span></h1>
-    
+  
 
 
   </body>

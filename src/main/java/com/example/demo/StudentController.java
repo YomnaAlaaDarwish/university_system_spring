@@ -1,5 +1,20 @@
 package com.example.demo;
 
+import java.io.File;
+import java.io.IOException;
+
+import javax.annotation.PostConstruct;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,16 +26,6 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-
-import javax.annotation.PostConstruct;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.*;
-import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.stream.StreamResult;
-import java.io.File;
-import java.io.IOException;
 
 @Controller
 @RequestMapping("/")
@@ -47,10 +52,31 @@ public class StudentController {
         }
     }
 
-    @GetMapping
+    @GetMapping("/Home")
     public ModelAndView showForm() {
+        return new ModelAndView("Home");
+    }
+
+    @GetMapping("/Add")
+    public ModelAndView Add() {
         return new ModelAndView("index");
     }
+
+    @GetMapping("/SearchName")
+    public ModelAndView SearchID() {
+        return new ModelAndView("SearchName");
+    }
+
+    @GetMapping("/SearchGPA")
+    public ModelAndView SearchGPA() {
+        return new ModelAndView("SearchGPA");
+    }
+
+    @GetMapping("/Delete")
+    public ModelAndView DeletePage() {
+        return new ModelAndView("Delete");
+    }
+
     public void saveXmldocument() {
         try {
             TransformerFactory transformerFactory = TransformerFactory.newInstance();
@@ -65,6 +91,7 @@ public class StudentController {
             e.printStackTrace();
         }
     }
+
     @PostMapping("/addStudent")
     public ModelAndView addStudent(
             @RequestParam("studentId") String studentId,
@@ -73,8 +100,7 @@ public class StudentController {
             @RequestParam("gender") String gender,
             @RequestParam("gpa") double gpa,
             @RequestParam("level") int level,
-            @RequestParam("address") String address
-    ) {
+            @RequestParam("address") String address) {
         Element studentElement = document.createElement("Student");
         studentElement.setAttribute("ID", studentId);
 
@@ -110,26 +136,107 @@ public class StudentController {
         return new ModelAndView("index");
     }
 
-    @PostMapping("/deleteStudent")
-    @ResponseBody
-public String deleteStudent(@RequestParam("studentId") String studentId) {
-    NodeList studentList = document.getElementsByTagName("Student");
-    for (int i = 0; i < studentList.getLength(); i++) {
-        Element studentElement = (Element) studentList.item(i);
-        String idAttribute = studentElement.getAttribute("ID");
-        
-        if (idAttribute.equals(studentId)) {
-            Node universityNode = studentElement.getParentNode();
-            universityNode.removeChild(studentElement);
-
-            saveXmldocument();
-            return ("Student deleted");
-        }
+    @GetMapping("/getStudentInfo")
+    public ResponseEntity<String> getStudentInfo(@RequestParam String studentName) {
+        String studentInfo = searchStudentInXML(studentName);
+        return ResponseEntity.ok(studentInfo);
     }
 
-    return ("Student not found");
-}
+    private String searchStudentInXML(String studentName) {
+        try {
+            // البحث عن عناصر الطلاب
+            NodeList nodeList = document.getElementsByTagName("Student");
+            for (int i = 0; i < nodeList.getLength(); i++) {
+                Node node = nodeList.item(i);
+                if (node.getNodeType() == Node.ELEMENT_NODE) {
+                    Element element = (Element) node;
+                    String n = element.getElementsByTagName("FirstName").item(0).getTextContent();
+                    // element.getAttribute("ID")
+                    if (n.equals(studentName)) {
 
+                        // استخراج وإرجاع تفاصيل الطالب
+                        String firsttName = element.getElementsByTagName("FirstName").item(0).getTextContent();
+                        String lastName = element.getElementsByTagName("LastName").item(0).getTextContent();
+                        String gender = element.getElementsByTagName("Gender").item(0).getTextContent();
+                        String gpa = element.getElementsByTagName("GPA").item(0).getTextContent();
+                        String level = element.getElementsByTagName("Level").item(0).getTextContent();
+                        String address = element.getElementsByTagName("Address").item(0).getTextContent();
 
-    
+                        return "Student Info " + "\n" +
+                                "First Name  : " + firsttName + "\n" +
+                                "Last Name  : " + lastName + "\n" +
+                                "Gender     : " + gender + "\n" +
+                                "GPA        : " + gpa + "\n" +
+                                "Level      : " + level + "\n" +
+                                "Address    : " + address + "\n";
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "Student not found";
+    }
+
+    @GetMapping("/getStudentInfo2")
+    public ResponseEntity<String> getStudentInfo2(@RequestParam String gpa) {
+        String studentInfo = searchStudentInXMLGPA(gpa);
+        return ResponseEntity.ok(studentInfo);
+    }
+
+    private String searchStudentInXMLGPA(String gpaa) {
+        try {
+            // البحث عن عناصر الطلاب
+            NodeList nodeList = document.getElementsByTagName("Student");
+            for (int i = 0; i < nodeList.getLength(); i++) {
+                Node node = nodeList.item(i);
+                if (node.getNodeType() == Node.ELEMENT_NODE) {
+                    Element element = (Element) node;
+                    String g = element.getElementsByTagName("GPA").item(0).getTextContent();
+
+                    if (g.equals(gpaa)) {
+
+                        // استخراج وإرجاع تفاصيل الطالب
+                        String firsttName = element.getElementsByTagName("FirstName").item(0).getTextContent();
+                        String lastName = element.getElementsByTagName("LastName").item(0).getTextContent();
+                        String gender = element.getElementsByTagName("Gender").item(0).getTextContent();
+                        String gpa = element.getElementsByTagName("GPA").item(0).getTextContent();
+                        String level = element.getElementsByTagName("Level").item(0).getTextContent();
+                        String address = element.getElementsByTagName("Address").item(0).getTextContent();
+
+                        return "Student Info " + "\n" +
+                                "First Name  : " + firsttName + "\n" +
+                                "Last Name  : " + lastName + "\n" +
+                                "Gender     : " + gender + "\n" +
+                                "GPA        : " + gpa + "\n" +
+                                "Level      : " + level + "\n" +
+                                "Address    : " + address + "\n";
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "Student not found";
+    }
+
+    @PostMapping("/deleteStudent")
+    @ResponseBody
+    public String deleteStudent(@RequestParam("studentId") String studentId) {
+        NodeList studentList = document.getElementsByTagName("Student");
+        for (int i = 0; i < studentList.getLength(); i++) {
+            Element studentElement = (Element) studentList.item(i);
+            String idAttribute = studentElement.getAttribute("ID");
+
+            if (idAttribute.equals(studentId)) {
+                Node universityNode = studentElement.getParentNode();
+                universityNode.removeChild(studentElement);
+
+                saveXmldocument();
+                return ("Student deleted");
+            }
+        }
+
+        return ("Student not found");
+    }
 }
