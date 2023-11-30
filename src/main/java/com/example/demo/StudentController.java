@@ -484,8 +484,47 @@ private List<Student> searchStudentInXMLaddress(String value) {
     return students;
 }
 
+///////////////////////////////////////////////////////////
+                  //UPDATE STUDENT//
 
+@PostMapping("/updateStudent")
+@ResponseBody
+public String updateStudent(
+@RequestParam("studentId") String studentId,
+@RequestParam(value = "newFirstName", required = false) String newFirstName,
+@RequestParam(value = "newLastName", required = false) String newLastName,
+@RequestParam(value = "newGender", required = false) String newGender,
+@RequestParam(value = "newGPA", required = false) String newGPA,
+@RequestParam(value = "newLevel", required = false) String newLevel,
+@RequestParam(value = "newAddress", required = false) String newAddress
+) {
+NodeList studentList = document.getElementsByTagName("Student");
 
+for (int i = 0; i < studentList.getLength(); i++) {
+Element studentElement = (Element) studentList.item(i);
+String idAttribute = studentElement.getAttribute("ID");
+
+if (idAttribute.equals(studentId)) {
+ // Update student information if new data is provided
+updateAttribute(studentElement, "FirstName", newFirstName);
+updateAttribute(studentElement, "LastName", newLastName);
+updateAttribute(studentElement, "Gender", newGender);
+updateAttribute(studentElement, "GPA", newGPA);
+updateAttribute(studentElement, "Level", newLevel);
+updateAttribute(studentElement, "Address", newAddress);
+
+saveXmldocument();
+return "Student information updated";
+}
+}
+return "Student not found";
+}
+
+private void updateAttribute(Element element, String attributeName, String newValue) {
+if (newValue != null && !newValue.isEmpty()) {
+element.getElementsByTagName(attributeName).item(0).setTextContent(newValue);
+}
+}
 
 
 }
