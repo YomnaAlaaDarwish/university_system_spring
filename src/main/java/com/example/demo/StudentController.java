@@ -2,6 +2,8 @@ package com.example.demo;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.xml.parsers.DocumentBuilder;
@@ -67,9 +69,33 @@ public class StudentController {
         return new ModelAndView("index");
     }
 
-    @GetMapping("/SearchName")
-    public ModelAndView SearchID() {
-        return new ModelAndView("SearchName");
+    @GetMapping("/search")
+    public ModelAndView Search() {
+        return new ModelAndView("search");
+    }
+    @GetMapping("/SearchFname")
+    public ModelAndView SearchFName() {
+        return new ModelAndView("SearchFname");
+    }
+    @GetMapping("/SearchLname")
+    public ModelAndView SearchLName() {
+        return new ModelAndView("SearchLname");
+    }
+    @GetMapping("/SearchAddress")
+    public ModelAndView SearchAddress() {
+        return new ModelAndView("SearchAddress");
+    }
+    @GetMapping("/SearchLevel")
+    public ModelAndView Searchlevel() {
+        return new ModelAndView("SearchLevel");
+    }
+    @GetMapping("/SearchGender")
+    public ModelAndView SearchGender() {
+        return new ModelAndView("SearchGender");
+    }
+    @GetMapping("/Searchid")
+    public ModelAndView Searchid() {
+        return new ModelAndView("Searchid");
     }
 
     @GetMapping("/SearchGPA")
@@ -99,7 +125,13 @@ public class StudentController {
 
     @PostMapping(value = "/addStudent", consumes = org.springframework.http.MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public void addStudent(@RequestBody Student student) {
+    public ResponseEntity<String> addStudent(@RequestBody Student student) {
+        if(IsduplicateID(Integer.parseInt(student.getStudentId())))
+        {
+            return ResponseEntity.badRequest().body("Duplicate student ID. Please use a different ID.");
+        }
+        else
+        {
         Element studentElement = document.createElement("Student");
         studentElement.setAttribute("ID", student.getStudentId());
 
@@ -131,93 +163,13 @@ public class StudentController {
         universityNode.appendChild(studentElement);
 
         saveXmldocument();
+        return ResponseEntity.ok("Student added successfully");
+        }
+        
 
         //return new ModelAndView("index");
     }
 
-    @GetMapping("/getStudentInfo")
-    public ResponseEntity<String> getStudentInfo(@RequestParam String studentName) {
-        String studentInfo = searchStudentInXML(studentName);
-        return ResponseEntity.ok(studentInfo);
-    }
-
-    private String searchStudentInXML(String studentName) {
-        try {
-            // البحث عن عناصر الطلاب
-            NodeList nodeList = document.getElementsByTagName("Student");
-            for (int i = 0; i < nodeList.getLength(); i++) {
-                Node node = nodeList.item(i);
-                if (node.getNodeType() == Node.ELEMENT_NODE) {
-                    Element element = (Element) node;
-                    String n = element.getElementsByTagName("FirstName").item(0).getTextContent();
-                    // element.getAttribute("ID")
-                    if (n.equals(studentName)) {
-
-                        // استخراج وإرجاع تفاصيل الطالب
-                        String firsttName = element.getElementsByTagName("FirstName").item(0).getTextContent();
-                        String lastName = element.getElementsByTagName("LastName").item(0).getTextContent();
-                        String gender = element.getElementsByTagName("Gender").item(0).getTextContent();
-                        String gpa = element.getElementsByTagName("GPA").item(0).getTextContent();
-                        String level = element.getElementsByTagName("Level").item(0).getTextContent();
-                        String address = element.getElementsByTagName("Address").item(0).getTextContent();
-
-                        return "Student Info " + "\n" +
-                                "First Name  : " + firsttName + "\n" +
-                                "Last Name  : " + lastName + "\n" +
-                                "Gender     : " + gender + "\n" +
-                                "GPA        : " + gpa + "\n" +
-                                "Level      : " + level + "\n" +
-                                "Address    : " + address + "\n";
-                    }
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return "Student not found";
-    }
-
-    @GetMapping("/getStudentInfo2")
-    public ResponseEntity<String> getStudentInfo2(@RequestParam String gpa) {
-        String studentInfo = searchStudentInXMLGPA(gpa);
-        return ResponseEntity.ok(studentInfo);
-    }
-
-    private String searchStudentInXMLGPA(String gpaa) {
-        try {
-            // البحث عن عناصر الطلاب
-            NodeList nodeList = document.getElementsByTagName("Student");
-            for (int i = 0; i < nodeList.getLength(); i++) {
-                Node node = nodeList.item(i);
-                if (node.getNodeType() == Node.ELEMENT_NODE) {
-                    Element element = (Element) node;
-                    String g = element.getElementsByTagName("GPA").item(0).getTextContent();
-
-                    if (g.equals(gpaa)) {
-
-                        // استخراج وإرجاع تفاصيل الطالب
-                        String firsttName = element.getElementsByTagName("FirstName").item(0).getTextContent();
-                        String lastName = element.getElementsByTagName("LastName").item(0).getTextContent();
-                        String gender = element.getElementsByTagName("Gender").item(0).getTextContent();
-                        String gpa = element.getElementsByTagName("GPA").item(0).getTextContent();
-                        String level = element.getElementsByTagName("Level").item(0).getTextContent();
-                        String address = element.getElementsByTagName("Address").item(0).getTextContent();
-
-                        return "Student Info " + "\n" +
-                                "First Name  : " + firsttName + "\n" +
-                                "Last Name  : " + lastName + "\n" +
-                                "Gender     : " + gender + "\n" +
-                                "GPA        : " + gpa + "\n" +
-                                "Level      : " + level + "\n" +
-                                "Address    : " + address + "\n";
-                    }
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return "Student not found";
-    }
 
     @PostMapping("/deleteStudent")
     @ResponseBody
@@ -238,4 +190,302 @@ public class StudentController {
 
         return ("Student not found");
     }
+
+private boolean IsduplicateID(int id) {
+        NodeList nodeList = document.getElementsByTagName("Student");
+        for (int i = 0; i < nodeList.getLength(); i++) {
+            Node node = nodeList.item(i);
+            if (node.getNodeType() == Node.ELEMENT_NODE) {
+                Element element = (Element) node;
+                String g = element.getAttribute("ID");
+                if (id==Integer.parseInt(g)) {
+                return true;
+                }
+            }
+        }
+    return false;
+}
+
+@GetMapping("/StudentGpa")
+public ResponseEntity<List<Student>> StudentGpa(@RequestParam String gpa) {
+    List<Student> students = searchStudentInXMLGPA(gpa);
+    return ResponseEntity.ok(students);
+}
+
+private List<Student> searchStudentInXMLGPA(String gpaa) {
+    List<Student> students = new ArrayList<>();
+
+    try {
+        // Your existing code to retrieve XML data
+
+        NodeList nodeList = document.getElementsByTagName("Student");
+        for (int i = 0; i < nodeList.getLength(); i++) {
+            Node node = nodeList.item(i);
+            if (node.getNodeType() == Node.ELEMENT_NODE) {
+                Element element = (Element) node;
+                String g = element.getElementsByTagName("GPA").item(0).getTextContent();
+
+                if (g.equals(gpaa)) {
+                    // Extract student details and add to the list
+                    Student student = new Student();
+                    student.setFirstName(element.getElementsByTagName("FirstName").item(0).getTextContent());
+                    student.setLastName(element.getElementsByTagName("LastName").item(0).getTextContent());
+                    student.setGender(element.getElementsByTagName("Gender").item(0).getTextContent());
+                    student.setGpa (Double.parseDouble(element.getElementsByTagName("GPA").item(0).getTextContent()));
+                    student.setLevel(Integer.parseInt(element.getElementsByTagName("Level").item(0).getTextContent()));
+                    student.setAddress(element.getElementsByTagName("Address").item(0).getTextContent());
+
+                    students.add(student);
+                }
+            }
+        }
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+
+    return students;
+}
+
+@GetMapping("/StudentFname")
+public ResponseEntity<List<Student>> StudentFname(@RequestParam String Fname) {
+    List<Student> students = searchStudentInXMLFname(Fname);
+    return ResponseEntity.ok(students);
+}
+private List<Student> searchStudentInXMLFname(String Fname) {
+    List<Student> students = new ArrayList<>();
+
+    try {
+        // Your existing code to retrieve XML data
+
+        NodeList nodeList = document.getElementsByTagName("Student");
+        for (int i = 0; i < nodeList.getLength(); i++) {
+            Node node = nodeList.item(i);
+            if (node.getNodeType() == Node.ELEMENT_NODE) {
+                Element element = (Element) node;
+                String g = element.getElementsByTagName("FirstName").item(0).getTextContent();
+
+                if (g.equals(Fname)) {
+                    // Extract student details and add to the list
+                    Student student = new Student();
+                    student.setFirstName(element.getElementsByTagName("FirstName").item(0).getTextContent());
+                    student.setLastName(element.getElementsByTagName("LastName").item(0).getTextContent());
+                    student.setGender(element.getElementsByTagName("Gender").item(0).getTextContent());
+                    student.setGpa (Double.parseDouble(element.getElementsByTagName("GPA").item(0).getTextContent()));
+                    student.setLevel(Integer.parseInt(element.getElementsByTagName("Level").item(0).getTextContent()));
+                    student.setAddress(element.getElementsByTagName("Address").item(0).getTextContent());
+
+                    students.add(student);
+                }
+            }
+        }
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+
+    return students;
+}
+    
+@GetMapping("/Studentlname")
+public ResponseEntity<List<Student>> Studentlname(@RequestParam String lname) {
+    List<Student> students = searchStudentInXMLlname(lname);
+    return ResponseEntity.ok(students);
+}
+
+private List<Student> searchStudentInXMLlname(String lname) {
+    List<Student> students = new ArrayList<>();
+
+    try {
+        // Your existing code to retrieve XML data
+
+        NodeList nodeList = document.getElementsByTagName("Student");
+        for (int i = 0; i < nodeList.getLength(); i++) {
+            Node node = nodeList.item(i);
+            if (node.getNodeType() == Node.ELEMENT_NODE) {
+                Element element = (Element) node;
+                String g = element.getElementsByTagName("LastName").item(0).getTextContent();
+
+                if (g.equals(lname)) {
+                    // Extract student details and add to the list
+                    Student student = new Student();
+                    student.setFirstName(element.getElementsByTagName("FirstName").item(0).getTextContent());
+                    student.setLastName(element.getElementsByTagName("LastName").item(0).getTextContent());
+                    student.setGender(element.getElementsByTagName("Gender").item(0).getTextContent());
+                    student.setGpa (Double.parseDouble(element.getElementsByTagName("GPA").item(0).getTextContent()));
+                    student.setLevel(Integer.parseInt(element.getElementsByTagName("Level").item(0).getTextContent()));
+                    student.setAddress(element.getElementsByTagName("Address").item(0).getTextContent());
+
+                    students.add(student);
+                }
+            }
+        }
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+
+    return students;
+}
+    
+@GetMapping("/Studentlevel")
+public ResponseEntity<List<Student>> Studentlevel(@RequestParam String level) {
+    List<Student> students = searchStudentInXMLlevel(level);
+    return ResponseEntity.ok(students);
+}
+
+private List<Student> searchStudentInXMLlevel(String level) {
+    List<Student> students = new ArrayList<>();
+
+    try {
+        // Your existing code to retrieve XML data
+
+        NodeList nodeList = document.getElementsByTagName("Student");
+        for (int i = 0; i < nodeList.getLength(); i++) {
+            Node node = nodeList.item(i);
+            if (node.getNodeType() == Node.ELEMENT_NODE) {
+                Element element = (Element) node;
+                String g = element.getElementsByTagName("Level").item(0).getTextContent();
+
+                if (g.equals(level)) {
+                    // Extract student details and add to the list
+                    Student student = new Student();
+                    student.setFirstName(element.getElementsByTagName("FirstName").item(0).getTextContent());
+                    student.setLastName(element.getElementsByTagName("LastName").item(0).getTextContent());
+                    student.setGender(element.getElementsByTagName("Gender").item(0).getTextContent());
+                    student.setGpa (Double.parseDouble(element.getElementsByTagName("GPA").item(0).getTextContent()));
+                    student.setLevel(Integer.parseInt(element.getElementsByTagName("Level").item(0).getTextContent()));
+                    student.setAddress(element.getElementsByTagName("Address").item(0).getTextContent());
+
+                    students.add(student);
+                }
+            }
+        }
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+
+    return students;
+}
+    
+@GetMapping("/id")
+public ResponseEntity<List<Student>> id(@RequestParam String id) {
+    List<Student> students = searchStudentInXMLid(id);
+    return ResponseEntity.ok(students);
+}
+
+private List<Student> searchStudentInXMLid(String value) {
+    List<Student> students = new ArrayList<>();
+
+    try {
+        // Your existing code to retrieve XML data
+
+        NodeList nodeList = document.getElementsByTagName("Student");
+        for (int i = 0; i < nodeList.getLength(); i++) {
+            Node node = nodeList.item(i);
+            if (node.getNodeType() == Node.ELEMENT_NODE) {
+                Element element = (Element) node;
+                String g = element.getAttribute("ID");
+                if (g.equals(value)) {
+                    // Extract student details and add to the list
+                    Student student = new Student();
+                    student.setFirstName(element.getElementsByTagName("FirstName").item(0).getTextContent());
+                    student.setLastName(element.getElementsByTagName("LastName").item(0).getTextContent());
+                    student.setGender(element.getElementsByTagName("Gender").item(0).getTextContent());
+                    student.setGpa (Double.parseDouble(element.getElementsByTagName("GPA").item(0).getTextContent()));
+                    student.setLevel(Integer.parseInt(element.getElementsByTagName("Level").item(0).getTextContent()));
+                    student.setAddress(element.getElementsByTagName("Address").item(0).getTextContent());
+
+                    students.add(student);
+                }
+            }
+        }
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+
+    return students;
+}
+    
+@GetMapping("/gender")
+public ResponseEntity<List<Student>> gender(@RequestParam String gender) {
+    List<Student> students = searchStudentInXMLgender(gender);
+    return ResponseEntity.ok(students);
+}
+
+private List<Student> searchStudentInXMLgender(String value) {
+    List<Student> students = new ArrayList<>();
+
+    try {
+        // Your existing code to retrieve XML data
+
+        NodeList nodeList = document.getElementsByTagName("Student");
+        for (int i = 0; i < nodeList.getLength(); i++) {
+            Node node = nodeList.item(i);
+            if (node.getNodeType() == Node.ELEMENT_NODE) {
+                Element element = (Element) node;
+                String g = element.getElementsByTagName("Gender").item(0).getTextContent();
+
+                if (g.equals(value)) {
+                    // Extract student details and add to the list
+                    Student student = new Student();
+                    student.setFirstName(element.getElementsByTagName("FirstName").item(0).getTextContent());
+                    student.setLastName(element.getElementsByTagName("LastName").item(0).getTextContent());
+                    student.setGender(element.getElementsByTagName("Gender").item(0).getTextContent());
+                    student.setGpa (Double.parseDouble(element.getElementsByTagName("GPA").item(0).getTextContent()));
+                    student.setLevel(Integer.parseInt(element.getElementsByTagName("Level").item(0).getTextContent()));
+                    student.setAddress(element.getElementsByTagName("Address").item(0).getTextContent());
+
+                    students.add(student);
+                }
+            }
+        }
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+
+    return students;
+}
+    
+@GetMapping("/address")
+public ResponseEntity<List<Student>> address(@RequestParam String address) {
+    List<Student> students = searchStudentInXMLaddress(address);
+    return ResponseEntity.ok(students);
+}
+
+private List<Student> searchStudentInXMLaddress(String value) {
+    List<Student> students = new ArrayList<>();
+
+    try {
+        // Your existing code to retrieve XML data
+
+        NodeList nodeList = document.getElementsByTagName("Student");
+        for (int i = 0; i < nodeList.getLength(); i++) {
+            Node node = nodeList.item(i);
+            if (node.getNodeType() == Node.ELEMENT_NODE) {
+                Element element = (Element) node;
+                String g = element.getElementsByTagName("Address").item(0).getTextContent();
+
+                if (g.equals(value)) {
+                    // Extract student details and add to the list
+                    Student student = new Student();
+                    student.setFirstName(element.getElementsByTagName("FirstName").item(0).getTextContent());
+                    student.setLastName(element.getElementsByTagName("LastName").item(0).getTextContent());
+                    student.setGender(element.getElementsByTagName("Gender").item(0).getTextContent());
+                    student.setGpa (Double.parseDouble(element.getElementsByTagName("GPA").item(0).getTextContent()));
+                    student.setLevel(Integer.parseInt(element.getElementsByTagName("Level").item(0).getTextContent()));
+                    student.setAddress(element.getElementsByTagName("Address").item(0).getTextContent());
+
+                    students.add(student);
+                }
+            }
+        }
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+
+    return students;
+}
+
+
+
+
+
 }

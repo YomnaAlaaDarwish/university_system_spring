@@ -47,11 +47,15 @@
 </head>
 <body>
     <div class="container">
-        <h1>Student Management System</h1>
+        <h1>Search by:</h1>
         <div class="buttons">
-            <button onclick="location.href='Add'">Add</button>
-            <button onclick="location.href='search'">Search</button>
-            <button onclick="location.href='/Delete'">Delete</button>
+            <button onclick="location.href='Searchid'">ID</button>
+            <button onclick="location.href='SearchFname'">First Name</button>
+            <button onclick="location.href='SearchLname'">Last Name</button>
+            <button onclick="location.href='SearchGPA'">GPA</button>
+            <button onclick="location.href='SearchLevel'">level</button>
+            <button onclick="location.href='SearchAddress'">Address</button>
+            <button onclick="location.href='SearchGender'">Gender</button>
         </div>
     </div>
 </body>

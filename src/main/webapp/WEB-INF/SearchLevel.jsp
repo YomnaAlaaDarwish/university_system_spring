@@ -80,8 +80,8 @@
         }
     </style>
     <body>
-        <label for="studentGPA">Student GPA:</label>
-        <input type="text" id="studentGPA">
+        <label for="level">Student level:</label>
+        <input type="text" id="level">
         <button onclick="fetchStudentInfo()">Get Student Info</button>
     
         <p id="studentCount">Number of Students: 0</p>
@@ -104,8 +104,8 @@
     
         <script>
             function fetchStudentInfo() {
-                var studentGPA = document.getElementById("studentGPA").value;
-                fetch('/StudentGpa?gpa=' + studentGPA)
+                var studentlevel = document.getElementById("level").value;
+                fetch('/Studentlevel?level=' + studentlevel)
                     .then(response => response.json())
                     .then(data => {
                         displayStudentInfo(data);

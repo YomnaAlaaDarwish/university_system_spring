@@ -60,6 +60,7 @@
       }
     </style>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
       var maxStudents = 0;
       var addedStudents = 0;
@@ -71,15 +72,60 @@
       function clickCounter() {
         if (maxStudents > 0) {
           addedStudents++;
-          if (addedStudents-1 >= maxStudents) {
+          if (addedStudents - 1 >= maxStudents) {
             document.getElementById("myButton").disabled = true;
             window.location.href = "/Home";
           }
         }
       }
-    </script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script>
+
+      //validation
+      function validateForm() {
+        // Get form inputs
+        var firstName = document.getElementById("firstName").value;
+        var lastName = document.getElementById("lastName").value;
+        var address = document.getElementById("address").value;
+        var studentId = document.getElementById("studentId").value;
+        var gpa = document.getElementById("gpa").value;
+        var gender = document.getElementById("gender").value;
+        var level = document.getElementById("level").value;
+
+        // Check if name and address contain only characters (a-z)
+        if (!isAlpha(firstName) || !isAlpha(lastName) || !isAlpha(address)) {
+          alert(
+            "Student  First and last name and address should contain only characters (a-z)."
+          );
+          return false;
+        }
+        // Check if GPA is in the valid range
+        if (gpa < 0 || gpa > 4) {
+          alert("GPA must be between 0 and 4.");
+          return false;
+        }
+        // Check if any field is empty
+        if (
+          !firstName ||
+          !lastName ||
+          !address ||
+          !studentId ||
+          !level ||
+          !gender ||
+          isNaN(gpa)
+        ) {
+          alert(
+            "All attributes must not be null/empty. Please fill in all fields."
+          );
+          return false;
+        }
+        clickCounter();
+        return true; // Form is valid
+      }
+
+      // Function to check if a string contains only alphabetic characters
+      function isAlpha(str) {
+        return /^[a-zA-Z]+$/.test(str);
+      }
+
       $(document).ready(function () {
         $("#addStudentForm").submit(function (event) {
           event.preventDefault(); // Prevent form submission
@@ -108,9 +154,15 @@
               // Redirect to the index page
               window.location.href = "/index";
             },
-            error: function (e) {
+            error: function (xhr, status, error) {
               // Handle error response
-              console.log("Error: " + e.responseText);
+              console.log("Error: " + xhr.responseText);
+              alert(xhr.responseText);
+              if (
+                xhr.responseText ==
+                "Duplicate student ID. Please use a different ID."
+              )
+                addedStudents--;
             },
           });
         });
@@ -119,9 +171,12 @@
   </head>
   <body>
     <h1>Student Management System</h1>
-    <label>Enter number of students:</label>
-    <input id="New" type="number" />
-    <button onclick="setMaxStudents()">Click me</button>
+    <div>
+      <label>Enter number of students:</label>
+      <input id="New" type="number" />
+      <button onclick="setMaxStudents()" id="myButton">Click me</button>
+    </div>
+
     <form method="POST" action="/addStudent" id="addStudentForm">
       <label for="studentId">Student ID:</label>
       <input type="text" id="studentId" name="studentId" required /><br /><br />
@@ -136,7 +191,15 @@
       <input type="text" id="gender" name="gender" required /><br /><br />
 
       <label for="gpa">GPA:</label>
-      <input type="text" id="gpa" name="gpa" required /><br /><br />
+      <input
+        type="number"
+        id="gpa"
+        name="gpa"
+        required
+        min="0"
+        max="4"
+        step="0.01"
+      /><br /><br />
 
       <label for="level">Level:</label>
       <input type="text" id="level" name="level" required /><br /><br />
@@ -148,7 +211,7 @@
         id="myButton"
         type="submit"
         value="Add Student"
-        onclick="clickCounter()"
+        onclick="validateForm()"
       />
     </form>
   </body>

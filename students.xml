@@ -8,7 +8,6 @@
         <Level>55</Level>
         <Address>gfdsfwras</Address>
     </Student>
-               
     <Student ID="4040">
         <FirstName>Salma</FirstName>
         <LastName>Alaa</LastName>
@@ -17,262 +16,107 @@
         <Level>55</Level>
         <Address>gfdsfwras</Address>
     </Student>
-    
-
-<Student ID="7070">
-        <FirstName>Ali</FirstName>
-        <LastName>Ashraf</LastName>
-        <Gender>male</Gender>
-        <GPA>80.0</GPA>
-        <Level>4</Level>
-        <Address>gzsrhz</Address>
-    </Student>
-
-<Student ID="20020">
-        <FirstName>Yomna</FirstName>
-        <LastName>Alaa</LastName>
-        <Gender>f</Gender>
-        <GPA>111.0</GPA>
-        <Level>55</Level>
-        <Address>gfdsfwras</Address>
-    </Student>
-<Student ID="20020">
-        <FirstName>Yomna</FirstName>
-        <LastName>Alaa</LastName>
-        <Gender>female</Gender>
-        <GPA>111.0</GPA>
-        <Level>55</Level>
-        <Address>gfdsfwras</Address>
-    </Student>
-    <Student ID="20020">
-        <FirstName>Yomna</FirstName>
-        <LastName>Alaa</LastName>
-        <Gender>female</Gender>
-        <GPA>111.0</GPA>
-        <Level>55</Level>
-        <Address>gfdsfwras</Address>
-    </Student>
-    <Student ID="2222">
-        <FirstName>علاء</FirstName>
-        <LastName>درويش</LastName>
-        <Gender>mm</Gender>
-        <GPA>555.0</GPA>
-        <Level>77</Level>
-        <Address>gfdsfwras</Address>
-    </Student>
-    <Student ID="5555">
-        <FirstName>علاء</FirstName>
-        <LastName>درويش</LastName>
-        <Gender>mm</Gender>
-        <GPA>555.0</GPA>
-        <Level>77</Level>
-        <Address>gfdsfwras</Address>
-    </Student>
-    <Student ID="777">
-        <FirstName>علاء</FirstName>
-        <LastName>درويش</LastName>
-        <Gender>mm</Gender>
-        <GPA>555.0</GPA>
-        <Level>77</Level>
-        <Address>gfdsfwras</Address>
-    </Student>
-    <Student ID="4">
-        <FirstName>علاء</FirstName>
-        <LastName>درويش</LastName>
-        <Gender>mm</Gender>
-        <GPA>555.0</GPA>
-        <Level>77</Level>
-        <Address>gfdsfwras</Address>
-    </Student>
-<Student ID="1">
-        <FirstName>Yomna</FirstName>
-        <LastName>Alaa</LastName>
-        <Gender>mm</Gender>
-        <GPA>111.0</GPA>
-        <Level>55</Level>
-        <Address>gfdsfwras</Address>
-    </Student>
-    <Student ID="2">
-        <FirstName>Yomna</FirstName>
-        <LastName>Alaa</LastName>
-        <Gender>mm</Gender>
-        <GPA>111.0</GPA>
-        <Level>55</Level>
-        <Address>gfdsfwras</Address>
-    </Student>
     <Student ID="1">
         <FirstName>Yomna</FirstName>
         <LastName>Alaa</LastName>
-        <Gender>f</Gender>
-        <GPA>111.0</GPA>
-        <Level>55</Level>
+        <Gender>rr</Gender>
+        <GPA>3.0</GPA>
+        <Level>77</Level>
         <Address>gfdsfwras</Address>
     </Student>
     <Student ID="2">
         <FirstName>Yomna</FirstName>
         <LastName>Alaa</LastName>
-        <Gender>f</Gender>
-        <GPA>111.0</GPA>
-        <Level>55</Level>
+        <Gender>rr</Gender>
+        <GPA>3.0</GPA>
+        <Level>77</Level>
         <Address>gfdsfwras</Address>
     </Student>
     <Student ID="3">
         <FirstName>Yomna</FirstName>
         <LastName>Alaa</LastName>
-        <Gender>f</Gender>
-        <GPA>111.0</GPA>
-        <Level>55</Level>
-        <Address>gfdsfwras</Address>
-    </Student>
-    <Student ID="4">
-        <FirstName>Yomna</FirstName>
-        <LastName>Alaa</LastName>
-        <Gender>f</Gender>
-        <GPA>111.0</GPA>
-        <Level>55</Level>
-        <Address>gfdsfwras</Address>
-    </Student>
-    <Student ID="5">
-        <FirstName>Yomna</FirstName>
-        <LastName>Alaa</LastName>
-        <Gender>f</Gender>
-        <GPA>111.0</GPA>
-        <Level>55</Level>
-        <Address>gfdsfwras</Address>
-    </Student>
-    <Student ID="70">
-        <FirstName>Yomna</FirstName>
-        <LastName>Alaa</LastName>
-        <Gender>f</Gender>
-        <GPA>111.0</GPA>
-        <Level>55</Level>
-        <Address>gfdsfwras</Address>
-    </Student>
-<Student ID="11">
-        <FirstName>Yomna</FirstName>
-        <LastName>Alaa</LastName>
-        <Gender>mm</Gender>
-        <GPA>555.0</GPA>
-        <Level>55</Level>
-        <Address>gfdsfwras</Address>
-    </Student>
-    <Student ID="22">
-        <FirstName>Yomna</FirstName>
-        <LastName>Alaa</LastName>
-        <Gender>mm</Gender>
-        <GPA>555.0</GPA>
-        <Level>55</Level>
-        <Address>gfdsfwras</Address>
-    </Student>
-    <Student ID="22">
-        <FirstName>Yomna</FirstName>
-        <LastName>Alaa</LastName>
-        <Gender>mm</Gender>
-        <GPA>555.0</GPA>
-        <Level>55</Level>
-        <Address>gfdsfwras</Address>
-    </Student>
-    <Student ID="88">
-        <FirstName>Yomna</FirstName>
-        <LastName>Alaa</LastName>
-        <Gender>mm</Gender>
-        <GPA>555.0</GPA>
-        <Level>55</Level>
-        <Address>gfdsfwras</Address>
-    </Student>
-    <Student ID="88">
-        <FirstName>Yomna</FirstName>
-        <LastName>Alaa</LastName>
-        <Gender>mm</Gender>
-        <GPA>555.0</GPA>
-        <Level>55</Level>
-        <Address>gfdsfwras</Address>
-    </Student>
-<Student ID="111">
-        <FirstName>Yomna</FirstName>
-        <LastName>Alaa</LastName>
-        <Gender>f</Gender>
-        <GPA>555.0</GPA>
-        <Level>55</Level>
-        <Address>gfdsfwras</Address>
-    </Student>
-    <Student ID="222">
-        <FirstName>Yomna</FirstName>
-        <LastName>Alaa</LastName>
-        <Gender>f</Gender>
-        <GPA>555.0</GPA>
-        <Level>55</Level>
-        <Address>gfdsfwras</Address>
-    </Student>
-<Student ID="1">
-        <FirstName>Yomna</FirstName>
-        <LastName>Alaa</LastName>
-        <Gender>mm</Gender>
-        <GPA>111.0</GPA>
-        <Level>55</Level>
-        <Address>gfdsfwras</Address>
-    </Student>
-    <Student ID="2">
-        <FirstName>Yomna</FirstName>
-        <LastName>Alaa</LastName>
-        <Gender>mm</Gender>
-        <GPA>111.0</GPA>
-        <Level>55</Level>
-        <Address>gfdsfwras</Address>
-    </Student>
-    <Student ID="3">
-        <FirstName>Yomna</FirstName>
-        <LastName>Alaa</LastName>
-        <Gender>mm</Gender>
-        <GPA>111.0</GPA>
-        <Level>55</Level>
+        <Gender>rr</Gender>
+        <GPA>3.0</GPA>
+        <Level>77</Level>
         <Address>gfdsfwras</Address>
     </Student>
 <Student ID="10">
         <FirstName>Yomna</FirstName>
-        <LastName>Alaa</LastName>
-        <Gender>f</Gender>
-        <GPA>111.0</GPA>
+        <LastName>ss</LastName>
+        <Gender>ss</Gender>
+        <GPA>3.0</GPA>
         <Level>55</Level>
         <Address>gfdsfwras</Address>
     </Student>
     <Student ID="11">
         <FirstName>Yomna</FirstName>
-        <LastName>Alaa</LastName>
-        <Gender>f</Gender>
-        <GPA>111.0</GPA>
+        <LastName>ss</LastName>
+        <Gender>ss</Gender>
+        <GPA>3.0</GPA>
         <Level>55</Level>
         <Address>gfdsfwras</Address>
     </Student>
-    <Student ID="12">
+<Student ID="111">
         <FirstName>Yomna</FirstName>
-        <LastName>Alaa</LastName>
-        <Gender>f</Gender>
-        <GPA>111.0</GPA>
+        <LastName>ffff</LastName>
+        <Gender>ff</Gender>
+        <GPA>4.0</GPA>
+        <Level>0</Level>
+        <Address>gfdsfwras</Address>
+    </Student>
+    <Student ID="112">
+        <FirstName>Yomna</FirstName>
+        <LastName>ffff</LastName>
+        <Gender>ff</Gender>
+        <GPA>4.0</GPA>
+        <Level>0</Level>
+        <Address>gfdsfwras</Address>
+    </Student>
+<Student ID="0">
+        <FirstName>Yomna</FirstName>
+        <LastName>ss</LastName>
+        <Gender>ee</Gender>
+        <GPA>0.02</GPA>
         <Level>55</Level>
         <Address>gfdsfwras</Address>
     </Student>
-    <Student ID="1">
-        <FirstName>علاء</FirstName>
-        <LastName>Alaa</LastName>
-        <Gender>mm</Gender>
-        <GPA>111.0</GPA>
-        <Level>77</Level>
+    <Student ID="88">
+        <FirstName>Yomna</FirstName>
+        <LastName>ss</LastName>
+        <Gender>ee</Gender>
+        <GPA>0.02</GPA>
+        <Level>55</Level>
         <Address>gfdsfwras</Address>
     </Student>
-    <Student ID="2">
-        <FirstName>علاء</FirstName>
-        <LastName>Alaa</LastName>
-        <Gender>mm</Gender>
-        <GPA>111.0</GPA>
-        <Level>77</Level>
+<Student ID="33">
+        <FirstName>Yomna</FirstName>
+        <LastName>rrr</LastName>
+        <Gender>ff</Gender>
+        <GPA>0.02</GPA>
+        <Level>55</Level>
         <Address>gfdsfwras</Address>
     </Student>
-    <Student ID="3">
-        <FirstName>علاء</FirstName>
-        <LastName>Alaa</LastName>
-        <Gender>mm</Gender>
-        <GPA>111.0</GPA>
+    <Student ID="333">
+        <FirstName>Yomna</FirstName>
+        <LastName>rrr</LastName>
+        <Gender>ff</Gender>
+        <GPA>0.02</GPA>
+        <Level>55</Level>
+        <Address>gfdsfwras</Address>
+    </Student>
+    <Student ID="3333">
+        <FirstName>Yomna</FirstName>
+        <LastName>rrr</LastName>
+        <Gender>ff</Gender>
+        <GPA>0.02</GPA>
+        <Level>55</Level>
+        <Address>gfdsfwras</Address>
+    </Student>
+<Student ID="741">
+        <FirstName>Yomna</FirstName>
+        <LastName>ss</LastName>
+        <Gender>dd</Gender>
+        <GPA>4.0</GPA>
         <Level>77</Level>
         <Address>gfdsfwras</Address>
     </Student>
