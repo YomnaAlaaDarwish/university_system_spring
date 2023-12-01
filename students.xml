@@ -1,23 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<University>
-        
-    <Student ID="20020">
-                
-        <FirstName>salma</FirstName>
-                
-        <LastName>essam</LastName>
-                
-        <Gender>female</Gender>
-                
-        <GPA>95</GPA>
-                
-        <Level>55</Level>
-                
-        <Address>حلوان</Address>
-            
-    </Student>
-        
-    <Student ID="4040">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><University><Student ID="4040">
                 
         <FirstName>Salma</FirstName>
                 
@@ -31,121 +12,7 @@
                 
         <Address>gfdsfwras</Address>
             
-    </Student>
-        
-    <Student ID="1">
-                
-        <FirstName>Yomna</FirstName>
-                
-        <LastName>Alaa</LastName>
-                
-        <Gender>rr</Gender>
-                
-        <GPA>3.0</GPA>
-                
-        <Level>77</Level>
-                
-        <Address>gfdsfwras</Address>
-            
-    </Student>
-        
-    <Student ID="2">
-                
-        <FirstName>Yomna</FirstName>
-                
-        <LastName>Alaa</LastName>
-                
-        <Gender>rr</Gender>
-                
-        <GPA>3.0</GPA>
-                
-        <Level>77</Level>
-                
-        <Address>gfdsfwras</Address>
-            
-    </Student>
-        
-    <Student ID="3">
-                
-        <FirstName>Yomna</FirstName>
-                
-        <LastName>Alaa</LastName>
-                
-        <Gender>rr</Gender>
-                
-        <GPA>3.0</GPA>
-                
-        <Level>77</Level>
-                
-        <Address>gfdsfwras</Address>
-            
-    </Student>
-    
-    <Student ID="10">
-                
-        <FirstName>Yomna</FirstName>
-                
-        <LastName>ss</LastName>
-                
-        <Gender>ss</Gender>
-                
-        <GPA>3.0</GPA>
-                
-        <Level>55</Level>
-                
-        <Address>gfdsfwras</Address>
-            
-    </Student>
-        
-    <Student ID="11">
-                
-        <FirstName>Yomna</FirstName>
-                
-        <LastName>ss</LastName>
-                
-        <Gender>ss</Gender>
-                
-        <GPA>3.0</GPA>
-                
-        <Level>55</Level>
-                
-        <Address>gfdsfwras</Address>
-            
-    </Student>
-    
-    <Student ID="111">
-                
-        <FirstName>Yomna</FirstName>
-                
-        <LastName>ffff</LastName>
-                
-        <Gender>ff</Gender>
-                
-        <GPA>4.0</GPA>
-                
-        <Level>0</Level>
-                
-        <Address>gfdsfwras</Address>
-            
-    </Student>
-        
-    <Student ID="112">
-                
-        <FirstName>Yomna</FirstName>
-                
-        <LastName>ffff</LastName>
-                
-        <Gender>ff</Gender>
-                
-        <GPA>4.0</GPA>
-                
-        <Level>0</Level>
-                
-        <Address>gfdsfwras</Address>
-            
-    </Student>
-    
-    <Student ID="0">
+    </Student><Student ID="0">
                 
         <FirstName>Yomna</FirstName>
                 
@@ -159,25 +26,105 @@
                 
         <Address>gfdsfwras</Address>
             
-    </Student>
-        
-    <Student ID="88">
+    </Student><Student ID="1">
+                
+        <FirstName>Yomna</FirstName>
+                
+        <LastName>Alaa</LastName>
+                
+        <Gender>rr</Gender>
+                
+        <GPA>3.0</GPA>
+                
+        <Level>77</Level>
+                
+        <Address>gfdsfwras</Address>
+            
+    </Student><Student ID="10">
                 
         <FirstName>Yomna</FirstName>
                 
         <LastName>ss</LastName>
                 
-        <Gender>ee</Gender>
+        <Gender>ss</Gender>
                 
-        <GPA>0.02</GPA>
+        <GPA>3.0</GPA>
                 
         <Level>55</Level>
                 
         <Address>gfdsfwras</Address>
             
-    </Student>
-    
-    <Student ID="33">
+    </Student><Student ID="11">
+                
+        <FirstName>Yomna</FirstName>
+                
+        <LastName>ss</LastName>
+                
+        <Gender>ss</Gender>
+                
+        <GPA>3.0</GPA>
+                
+        <Level>55</Level>
+                
+        <Address>gfdsfwras</Address>
+            
+    </Student><Student ID="111">
+                
+        <FirstName>Yomna</FirstName>
+                
+        <LastName>ffff</LastName>
+                
+        <Gender>ff</Gender>
+                
+        <GPA>4.0</GPA>
+                
+        <Level>0</Level>
+                
+        <Address>gfdsfwras</Address>
+            
+    </Student><Student ID="112">
+                
+        <FirstName>Yomna</FirstName>
+                
+        <LastName>ffff</LastName>
+                
+        <Gender>ff</Gender>
+                
+        <GPA>4.0</GPA>
+                
+        <Level>0</Level>
+                
+        <Address>gfdsfwras</Address>
+            
+    </Student><Student ID="2">
+                
+        <FirstName>Yomna</FirstName>
+                
+        <LastName>Alaa</LastName>
+                
+        <Gender>rr</Gender>
+                
+        <GPA>3.0</GPA>
+                
+        <Level>77</Level>
+                
+        <Address>gfdsfwras</Address>
+            
+    </Student><Student ID="3">
+                
+        <FirstName>Yomna</FirstName>
+                
+        <LastName>Alaa</LastName>
+                
+        <Gender>rr</Gender>
+                
+        <GPA>3.0</GPA>
+                
+        <Level>77</Level>
+                
+        <Address>gfdsfwras</Address>
+            
+    </Student><Student ID="33">
                 
         <FirstName>Yomna</FirstName>
                 
@@ -191,9 +138,7 @@
                 
         <Address>gfdsfwras</Address>
             
-    </Student>
-        
-    <Student ID="333">
+    </Student><Student ID="333">
                 
         <FirstName>Yomna</FirstName>
                 
@@ -207,9 +152,7 @@
                 
         <Address>gfdsfwras</Address>
             
-    </Student>
-        
-    <Student ID="3333">
+    </Student><Student ID="3333">
                 
         <FirstName>Yomna</FirstName>
                 
@@ -223,9 +166,7 @@
                 
         <Address>gfdsfwras</Address>
             
-    </Student>
-    
-    <Student ID="741">
+    </Student><Student ID="741">
                 
         <FirstName>Yomna</FirstName>
                 
@@ -239,6 +180,32 @@
                 
         <Address>gfdsfwras</Address>
             
-    </Student>
-    
-</University>
+    </Student><Student ID="88">
+                
+        <FirstName>Yomna</FirstName>
+                
+        <LastName>ss</LastName>
+                
+        <Gender>ee</Gender>
+                
+        <GPA>0.02</GPA>
+                
+        <Level>55</Level>
+                
+        <Address>gfdsfwras</Address>
+            
+    </Student><Student ID="20020">
+                
+        <FirstName>salma</FirstName>
+                
+        <LastName>essam</LastName>
+                
+        <Gender>female</Gender>
+                
+        <GPA>95</GPA>
+                
+        <Level>55</Level>
+                
+        <Address>حلوان</Address>
+            
+    </Student></University>

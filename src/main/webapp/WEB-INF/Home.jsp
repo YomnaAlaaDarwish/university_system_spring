@@ -52,6 +52,7 @@
             <button onclick="location.href='Add'">Add</button>
             <button onclick="location.href='search'">Search</button>
             <button onclick="location.href='/Delete'">Delete</button>
+            <button onclick="location.href='/Sort'">Sort</button>
             <button onclick="location.href='UpdateStud.jsp'">Update Student</button>
         </div>
     </div>
