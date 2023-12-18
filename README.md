@@ -1,5 +1,6 @@
 SOA
 Assignment 1
+
 Using java programming language, write a web application that do the following:
 For the following student structure, build an XML document and then retrieve data from it.
 <University>
@@ -26,8 +27,9 @@ Submission rules
  No late submission will be accepted.
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-SOA
+
 Advanced XML Assignment 2
+
 Using java programming language, and based on assignment 1
 For the following student structure
 <University>
